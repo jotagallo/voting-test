@@ -1,0 +1,23 @@
+uuid: 0d1133e4-651b-47e2-ab62-f97376eb7ade
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_voting_show_votes
+    - node.type.voting
+id: node.voting.field_voting_show_votes
+field_name: field_voting_show_votes
+entity_type: node
+bundle: voting
+label: 'Show Votes'
+description: 'Show total votes numbers after user votes.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,41 @@
+uuid: f20e9375-bcc9-400e-881b-205fe9180a7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.voting.field_tags
+    - field.field.node.voting.field_voting_options
+    - field.field.node.voting.field_voting_show_votes
+    - node.type.voting
+  module:
+    - entity_reference_revisions
+    - user
+id: node.voting.default
+targetEntityType: node
+bundle: voting
+mode: default
+content:
+  field_tags:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_voting_options:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_voting_show_votes: true

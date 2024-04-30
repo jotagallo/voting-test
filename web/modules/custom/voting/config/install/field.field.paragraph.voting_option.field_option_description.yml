@@ -1,0 +1,19 @@
+uuid: 990a7e35-018c-4360-88aa-afe6c1a3d1d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_option_description
+    - paragraphs.paragraphs_type.voting_option
+id: paragraph.voting_option.field_option_description
+field_name: field_option_description
+entity_type: paragraph
+bundle: voting_option
+label: 'Option Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,33 @@
+uuid: 3c17b94c-6a64-452e-9345-3079839f4cb1
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.voting.field_tags
+    - field.field.node.voting.field_voting_options
+    - field.field.node.voting.field_voting_show_votes
+    - node.type.voting
+  module:
+    - user
+id: node.voting.teaser
+targetEntityType: node
+bundle: voting
+mode: teaser
+content:
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_voting_options: true
+  field_voting_show_votes: true

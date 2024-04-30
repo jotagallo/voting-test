@@ -1,0 +1,10 @@
+uuid: ff0b0fea-72df-4c43-a6e2-7a721b5f3cf0
+langcode: en
+status: true
+dependencies: {  }
+id: voting_option
+label: 'Voting option'
+icon_uuid: null
+icon_default: null
+description: 'To be used on voting options list.'
+behavior_plugins: {  }

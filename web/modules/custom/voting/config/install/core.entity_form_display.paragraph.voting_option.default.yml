@@ -1,0 +1,44 @@
+uuid: 70aad495-d113-4a3d-af92-7788d4a91974
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.voting_option.field_option_description
+    - field.field.paragraph.voting_option.field_option_image
+    - field.field.paragraph.voting_option.field_option_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.voting_option
+  module:
+    - image
+id: paragraph.voting_option.default
+targetEntityType: paragraph
+bundle: voting_option
+mode: default
+content:
+  field_option_description:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_option_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_option_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

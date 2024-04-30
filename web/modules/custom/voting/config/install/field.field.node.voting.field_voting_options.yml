@@ -1,0 +1,31 @@
+uuid: 399793b0-689f-41f0-8f4f-fd07f4b0b8c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_voting_options
+    - node.type.voting
+    - paragraphs.paragraphs_type.voting_option
+  module:
+    - entity_reference_revisions
+id: node.voting.field_voting_options
+field_name: field_voting_options
+entity_type: node
+bundle: voting
+label: Options
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      voting_option: voting_option
+    negate: 0
+    target_bundles_drag_drop:
+      voting_option:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions
