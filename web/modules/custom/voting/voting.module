@@ -1,6 +1,7 @@
 <?php // voting module file
 
 use Drupal\voting\Controller\VotesController;
+use Drupal\node\Entity\Node;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
@@ -27,8 +28,51 @@ function voting_theme(){
 function voting_preprocess_node(&$vars) {
   $node = $vars['node'];
   if ($node->getType() == 'voting') {
-    $votes = new VotesController(\Drupal::database(), \Drupal::messenger());
-    $vars['user_voted'] = $votes->checkIfVoted($node->id());
+    // Check if user is logged in
+    $user = \Drupal::currentUser();
+    if ($user->id() === 0) {
+      $vars['hide_submit'] = TRUE;
+    } else {
+      $votes = new VotesController(\Drupal::database(), \Drupal::messenger());
+      $voted = (bool) $votes->checkIfVoted($node->id());
+      $vars['user_voted'] = $voted;
+      $show = (bool) $node->get('field_voting_show_votes')->value;
+      $show_votes = $show && $voted;
+      $vars['show_votes'] = in_array('administrator', $user->getRoles()) || $show_votes;
+      if ($show_votes) {
+        $vars['total_count'] = $votes->getTotalCount($node->id());
+      }
+    }
+    
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * Same as the hook above. Could have done better and not copying everything.
+ */
+function voting_preprocess_paragraph(&$vars) {
+  $paragraph = $vars['paragraph'];
+  
+  if ($paragraph->getType() == 'voting_option') {
+    // Check if user is logged in
+    $user = \Drupal::currentUser();
+    if ($user->id() === 0) {
+      $vars['hide_submit'] = TRUE;
+    } else {
+      $votes = new VotesController(\Drupal::database(), \Drupal::messenger());
+      $nid = $paragraph->get('parent_id')->first()->value;
+      $node = Node::load($nid);
+      $voted = (bool) $votes->checkIfVoted($nid);
+      $vars['user_voted'] = $voted;
+      $show = (bool) $node->get('field_voting_show_votes')->value;
+      $show_votes = $show && $voted;
+      $vars['show_votes'] = in_array('administrator', $user->getRoles()) || $show_votes;
+      if ($show_votes) {
+        $vars['votes'] = $votes->getTotalVotes($nid);
+      }
+    }
+    
   }
 }
 

@@ -94,10 +94,17 @@
     {% endif %}
     <form name="voting-{{ node.id }}" action="{{ path('voting.vote', {'node': node.id}) }}" method="POST">
       {{ content.field_voting_options }}
-      {% if user_voted %}
-        <p><strong>{{ 'You already voted on this content !'|t }}</strong></p>
+      {% if hide_submit %}
+        <p><strong>{{ 'You must be logged in to vote in this content.'|t }}</strong></p>
       {% else %}
-        <input class="button button--primary form-submit" type="submit" value="{{ 'Vote now'|t }}" />
+        {% if show_votes %}
+          <p><strong>{{ 'Total votes:'|t }} {{ total_count }}</strong></p>
+          {% endif %}
+        {% if user_voted and not show_votes %}
+          <p><strong>{{ 'You already voted on this content !'|t }}</strong></p>
+        {% elseif not show_votes  %}
+          <input class="button button--primary form-submit" type="submit" value="{{ 'Vote now'|t }}" />
+        {% endif %}
       {% endif %}
     </form>
   </div>

@@ -49,16 +49,21 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-    <input required type="radio" id="vote-{{ paragraph.id.value }}" name="vote" value="{{ paragraph.id.value }}">
-    <label for="{{ paragraph.id.value }}">      
-      <span class="option-title">
-        <strong>{{ content.field_option_title }}</strong>
-      </span>
-      <span class="option-desc">
-        <i>{{ content.field_option_description }}</i>
-      </span>
-      <span class="option-image">{{ content.field_option_image }}</span>
-    </label
+      <input required type="radio" id="vote-{{ paragraph.id.value }}" name="vote" value="{{ paragraph.id.value }}">
+      <label for="{{ paragraph.id.value }}">      
+        <span class="option-title">
+          <strong>{{ content.field_option_title }}</strong>
+        </span>
+        <span class="option-desc">
+          <i>{{ content.field_option_description }}</i>
+        </span>
+        <span class="option-image">{{ content.field_option_image }}</span>
+      </label>
+      {% if show_votes %}
+        <label for="file">{{ votes[paragraph.id.value].count }}</label>
+        <progress id="file" value="{{ votes[paragraph.id.value].percentage}}" max="100"></progress>
+        {{ votes[paragraph.id.value].percentage|number_format }}%
+      {% endif %}
     {% endblock %}
   </div>
 {% endblock paragraph %}

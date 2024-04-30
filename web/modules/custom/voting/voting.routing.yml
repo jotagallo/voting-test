@@ -3,7 +3,7 @@ voting.vote:
   defaults: 
     _controller: '\Drupal\voting\Controller\VotesController::vote'
   requirements: 
-    _permission: 'is logged in'
+    _user_is_logged_in: 'TRUE'
   options:
     parameters:
       node:
