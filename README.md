@@ -2,6 +2,10 @@
 
 Voting system for code challenge test using Drupal 10.
 
+Author: **[João Otávio Gallo](https://www.linkedin.com/in/jotagallo/)**
+
+joao.otavio.gallo@gmail.com
+
 ## About the project
 
 This project is a simple voting system simulator using a Drupal custom module to pack all the requirements for code and config. System's native RESTful API paths can be used for external access of the content.
@@ -18,4 +22,5 @@ This project is a simple voting system simulator using a Drupal custom module to
 
 - This projects relies on simplicity, so some parametrizations (as .env file) were suppressed for time saving. The code have some comments about that whenever is relevant.
 - No custom frontend asset (JS or CSS) was added, althought having the voting working on Ajax would be a nice to have.
+- PHP Strict types have been avoided to keep the compatibility with Drupal standards.
 - For some reason, PHP-GD module is not processing JPEG files for image presets. Maybe some version incompatibility, i could't have time to dig into a non-requirement and non-blocker issue. Using PNG is just fine by now.
