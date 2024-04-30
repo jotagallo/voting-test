@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function voting_schema() {
+  $schema['votes'] = [
+    'description' => 'Votes control table.',
+    'fields' => [
+      'vid' => [
+        'description' => 'The primary identifier for a vote.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ],
+      'nid' => [
+        'description' => 'The voting node related to the vote.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ],
+      'pid' => [
+        'description' => 'The option paragraph that was voted.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ],
+      'uid' => [
+        'description' => 'The user that voted.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ],
+    ],
+    'unique keys' => ['vid' => ['vid']],
+    'primary key' => ['vid']
+  ];
+  return $schema;
+}

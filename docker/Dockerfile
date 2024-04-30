@@ -12,6 +12,8 @@ RUN apt-get install -y --fix-missing  \
 	npm \
 	libz-dev \
 	libpng-dev \
+	libjpeg-dev \
+	libfreetype6-dev \
 	libxslt-dev \
 	libssl-dev \
 	default-mysql-client
@@ -30,6 +32,9 @@ RUN docker-php-ext-install \
 	soap \
 	pdo_mysql
 COPY ./php-fpm/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+# GD JPEG and Freetype support
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 # Drush
 RUN wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.10.2/drush.phar && \

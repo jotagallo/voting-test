@@ -1,0 +1,10 @@
+voting.vote:
+  path: '/vote/{node}' 
+  defaults: 
+    _controller: '\Drupal\voting\Controller\VotesController::vote'
+  requirements: 
+    _permission: 'is logged in'
+  options:
+    parameters:
+      node:
+        type: entity:node
